@@ -1,0 +1,20 @@
+# Use continuumio/miniconda3 as a base image 
+FROM continuumio/miniconda3
+
+# Set /HW3Assigned 2 as a working directory
+WORKDIR /HW3Assigned 2/fastapi
+
+# Copy environment.yml
+COPY * .
+
+# create an environment using environment.yml
+RUN conda env create -f environment.yml -n hw3_fastapi
+
+# install fastapi[standard] for fastapi's cli on the environment
+RUN conda install -n hw2_fastapi fastapi[standard] 
+
+# expose port 8000
+EXPOSE 8000
+
+# run the extract_save_data.py as fastapi server.
+CMD ["conda", "run", "--no-capture-output", "-n", "hw3_fastapi", "fastapi", "dev", "extract_save_data.py", "--port=8000", "--host=0.0.0.0"]
