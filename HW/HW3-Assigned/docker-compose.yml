@@ -1,26 +1,28 @@
 services:
-  webapp: 
-    build: ex03 # build from a Dockerfile in ex03 folder
+  fastapi: 
+    build: fastapi 
     ports:  # the port mappings between the host machine and the container
-      - "80:8501" # map host's port 80 to container's 8501
+      - "8000:8000" # map host's port 80 to container's 8000
     env_file: #  specify one or more files that contain environment variables
-      - ../.env 
+      - .env 
+    networks:
+      - app-network
     volumes: # specify a volume mount (VOLUME:CONTAINER_PATH), or an access mode (VOLUME:CONTAINER_PATH:ACCESS_MODE).
       - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/tmp/gcp-key.json
-  api-server:
-    build: ex01 # build from a Dockerfile in ex01 folder
+  streamlit:
+    build: streamlit # build from a Dockerfile in streamlit folder
     ports:
-      - "8000:8000"
+      - "8501:8000"
     networks:  #  Specify which networks the containers for that service should connect to/communicate with.
       - app-network
     env_file: #  specify one or more files that contain environment variables
-      - ../.env 
+      - ./.env 
     volumes:
       - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/tmp/gcp-key.json
   cron:
-    build: ex05
+    build: crontab
     depends_on: # To control the order of service startup and shutdown.
-      - api-server # depends on it
+      - fastapi # depends on it
     networks:
       - app-network # name of the network
 networks: # Networks let services communicate with each other

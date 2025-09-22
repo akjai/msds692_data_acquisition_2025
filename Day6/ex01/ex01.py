@@ -34,7 +34,7 @@ def get_json_response(url: str, api_key: str):
 
 @app.get("/retrieve_and_store")
 def retrieve_and_store(url: str):
-    # # load_dotenv(dotenv_path="/tmp_vol/.env")
+    load_dotenv()
     data_gov_api_key = os.getenv("DATA_GOV_API_KEY")
     service_account_key = os.getenv("GCP_SERVICE_ACCOUNT_KEY")
     project_id = os.getenv("GCP_PROJECT_ID")

@@ -1,4 +1,3 @@
-
 # Creating crontab to call the api server
 # install cron
 

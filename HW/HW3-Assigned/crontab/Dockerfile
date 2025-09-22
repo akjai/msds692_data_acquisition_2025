@@ -1,8 +1,8 @@
 # Use continuumio/miniconda3 as a base image 
-FROM continuumio/miniconda3
+FROM continuumio/miniconda3:latest
 
 # Set /HW3Assigned 2/crontab as a working directory
-WORKDIR /HW3Assigned 2/crontab
+WORKDIR /HW3Assigned/crontab
 
 # Copy environment.yml
 COPY * .
@@ -17,6 +17,6 @@ RUN touch /var/log/cron.log
 COPY api-cron /etc/cron.d/api-cron
 
 # Apply cron job 
-RUN crontab /etc/cron.d/api-cron
+RUN chmod 0644 /etc/cron.d/api-cron
 
 CMD ["cron", "-f"]
