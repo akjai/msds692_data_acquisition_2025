@@ -8,17 +8,17 @@ services:
     networks:
       - app-network
     volumes: # specify a volume mount (VOLUME:CONTAINER_PATH), or an access mode (VOLUME:CONTAINER_PATH:ACCESS_MODE).
-      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/tmp/gcp-key.json
+      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/root/.ssh/GCP_msds692_class_examples_key.json:ro
   streamlit:
     build: streamlit # build from a Dockerfile in streamlit folder
     ports:
-      - "8501:8000"
+      - "8501:8501"
     networks:  #  Specify which networks the containers for that service should connect to/communicate with.
       - app-network
     env_file: #  specify one or more files that contain environment variables
       - ./.env 
     volumes:
-      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/tmp/gcp-key.json
+      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/root/.ssh/GCP_msds692_class_examples_key.json:ro
   cron:
     build: crontab
     depends_on: # To control the order of service startup and shutdown.

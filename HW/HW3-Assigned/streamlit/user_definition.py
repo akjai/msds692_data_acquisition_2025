@@ -11,5 +11,6 @@ api_key = os.getenv('API_KEY')
 search_engine_id = os.getenv('SEARCH_ENGINE_ID')
 api_server_url = os.getenv('API_SERVICE_URL')
 
-file_name_prefix = 'jobs_search_hw3/'
+#file_name_prefix = 'jobs_search_hw3/'
+file_name_prefix = 'jobs_search'
 google_api_url = 'https://www.googleapis.com/customsearch/v1'
