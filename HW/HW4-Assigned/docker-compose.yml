@@ -6,7 +6,7 @@ services:
     env_file: #  specify one or more files that contain environment variables
       - ../../.env 
     volumes: # specify a volume mount (VOLUME:CONTAINER_PATH), or an access mode (VOLUME:CONTAINER_PATH:ACCESS_MODE).
-      - /Users/dwoodbridge/.ssh/inspired-goal-msds692-bucket.json:/tmp/gcp-key.json
+      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/root/.ssh/GCP_msds692_class_examples_key.json:ro
   api-server:
     build: fastapi # build from a Dockerfile in ex01 folder
     ports:
@@ -16,7 +16,7 @@ services:
     env_file: #  specify one or more files that contain environment variables
       - ../../.env
     volumes:
-      - /Users/dwoodbridge/.ssh/inspired-goal-msds692-bucket.json:/tmp/gcp-key.json
+      - /Users/ankitjain/.ssh/GCP_msds692_class_examples_key.json:/root/.ssh/GCP_msds692_class_examples_key.json:ro
   cron:
     build: crontab
     depends_on: # To control the order of service startup and shutdown.

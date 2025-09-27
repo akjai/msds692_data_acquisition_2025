@@ -32,3 +32,33 @@ def retrieve_meta_career_qualification(url: str) -> dict:
      'Excellent problem-solving, organizational, investigative,
      and critical thinking skills.']}
     """
+    response = requests.get(url)
+
+    soup = BeautifulSoup(response.text, "html.parser")
+ 
+    min_qual_text = soup.find("div", string="Minimum Qualifications")
+    min_qual_html_list = min_qual_text.find_next("ul")
+
+    min_qual_list = []
+    for qual in min_qual_html_list:
+        qual = qual.get_text(strip=True)
+        if qual != '':
+            min_qual_list.append(qual)
+
+    qual_dict = dict()
+    qual_dict[min_qual_text.get_text(strip=True)] = min_qual_list    
+
+    pref_qual_text = soup.find("div", string='Preferred Qualifications')
+    pref_qual_html_list = pref_qual_text.find_next("ul")
+
+    pref_qual_list = []
+    for qual in pref_qual_html_list:
+        qual = qual.get_text(strip=True)
+        if qual != '':
+            pref_qual_list.append(qual)
+    
+    qual_dict[pref_qual_text.get_text(strip=True)] = pref_qual_list
+
+    print(qual_dict)
+
+    return qual_dict
