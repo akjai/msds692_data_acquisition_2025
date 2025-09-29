@@ -38,5 +38,15 @@ def return_gemini_summary(qualification: dict) -> list:
     "Scikit-Learn", "Reinforcement Learning"]
     What you need to provide is just a string formatted array, not codes.
     It would be desirable to provide tools or algorithms
-    that are relevant to requirements.
+    that are relevant to requirements. Here is the dictionary: 
     """
+    client = genai.Client(api_key=gemini_key)
+    model_name = "gemini-2.5-flash"
+    prompt_content = system_instruction + str(qualification)
+
+    response = client.models.generate_content(
+        model=model_name,
+        contents=prompt_content
+    )
+
+    return response.text

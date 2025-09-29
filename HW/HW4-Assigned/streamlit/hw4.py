@@ -88,6 +88,7 @@ if __name__ == '__main__':
         data = pd.DataFrame(gcs_data_result)
         filtered_df = data[data['link']
                            .str.startswith(tuple(selected_categories))]
+        filtered_df = 
 
         # TODO - Return date, title, skills, and link from the filtered_df.
 

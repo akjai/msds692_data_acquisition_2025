@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv(dotenv_path="../../../.env")
+load_dotenv(dotenv_path="../../.env")
 
 project_id = os.getenv('PROJECT_ID')
 bucket_name = os.getenv('GCP_BUCKET_NAME')
